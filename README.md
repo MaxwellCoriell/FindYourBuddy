@@ -2,7 +2,7 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-A lost pet utility where users can post about lost and found pets in their area. Currently, only the Greater Nashville Area will be available available.
+A lost pet utility where users can post about lost and found pets in their area. Currently, only the Greater Nashville Area will be available.
 
 ## Table of Contents
 

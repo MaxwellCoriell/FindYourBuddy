@@ -1,3 +1,4 @@
+
 # FIND YOUR BUDDY Pull Request Template
 
 ## Status
@@ -32,4 +33,8 @@ For example:
     python manage.py makemigration
     python manage.py migrate
     python manage.py runserver
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 32b47f728203239f5ee5d565aa24d8d0e95da861

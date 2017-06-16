@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.template import RequestContext
 
 from fyb_web.forms import UserForm
+from fyb_web.forms import ProfileForm
 from fyb_web.forms import LostPetForm
 from fyb_web.forms import FoundPetForm
 
@@ -12,33 +13,42 @@ from fyb_web.forms import FoundPetForm
 
 def index(request):
     """
-    Renders the index page with the most recent lost and found posts
+    Purpose: Renders the index page with the most recent lost and found posts
     Author: Max Baldridge
     Arguments: request -- the full HTTP request object
     Returns: rendered view of the index page, with a display of recent posts
     """
-    template_name = 'index.html'
-    return render(request, template_name, {})
+
+    if request.method == 'GET':
+        template_name = 'index.html'
+        
+        try:
+            welcome_user = Profile.objects.filter(closet_name=request.user)
+            return render(request, template_name, {
+                'welcome_user': welcome_user})
+        except TypeError:
+            return render(request, template_name, {
+                'welcome_user': list('apple')})
 
 
 # Create your views here.
 def register(request):
     """
-    Handles the creation of a new user for authentication
-    Author: Max Baldridge
+    Purpose: Handles the creation of a new user for authentication
+    Author: Steve Brownlee & Max Baldridge
     Arguments: request -- The full HTTP request object
+    Returns: render of a registration from or invocation of django's login() method
     """
 
-    # A boolean value for telling the template 
-    # whether the registration was successful.
-    # Set to False initially. 
-    # Code changes value to True when registration succeeds.
+    # A boolean value for telling the template whether the registration was successful.
+    # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
 
     # Create a new user by invoking the `create_user` helper method
     # on Django's built-in User model
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
+        profile_form = ProfileForm(data=request.POST)
 
         if user_form.is_valid():
             # Save the user's form data to the database.
@@ -56,15 +66,19 @@ def register(request):
 
     elif request.method == 'GET':
         user_form = UserForm()
+        profile_form= ProfileForm()
         template_name = 'register.html'
-        return render(request, template_name, {'user_form': user_form})
+        return render(request, template_name, {
+            'user_form': user_form,
+            'profile_form': profile_form})
 
 
 def login_user(request):
     """
-    Handles the creation of a new user for authentication
-    Author: Max Baldridge
+    Purpose: Handles the creation of a new user for authentication
+    Author: Steve Brownlee & Max Baldridge
     Arguments: request -- The full HTTP request object
+    Returns: render index view or error if invalid login
     """
 
     # Obtain the context for the user's request.
@@ -81,17 +95,32 @@ def login_user(request):
         # If authentication was successful, log the user in
         if authenticated_user is not None:
             login(request=request, user=authenticated_user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/fyb_web/')
 
         else:
             # Bad login details were provided. So we can't log the user in.
             print("Invalid login details: {}, {}".format(username, password))
             return HttpResponse("Invalid login details supplied.")
 
-
     return render(request, 'login.html', {}, context)
 
-# Use the login_required() decorator to ensure only those logged in can access the view.
+
+# Use the login_required() decorator to ensure 
+# only those logged in can access the view.
+@login_required
+def view_account(request):
+    """
+    Purpose: When the user is logged in, they can view their account
+    Author: Max Baldridge
+    """
+    template_name = 'view_account.html'
+    if request.method == 'GET':
+        return(request, template_name)
+
+    if request.method == 'POST':
+        return render(request, template_name)
+
+
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.

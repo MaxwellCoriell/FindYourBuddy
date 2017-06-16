@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Find Your Buddy</title>
+  </head>
+  <body>
+    <h1>Welcome to Find Your Buddy!</h1>
+    {% if user.is_authenticated %}
+    <h1>FYB says... hello {{ user.username }}!</h1>
+    <a href="{% url 'fyb_web:logout' %}">Logout</a>
+    {% else %}
+    <h1>FYB says...</h1>
+    <div><a href="{% url 'fyb_web:register' %}">Register</a></div>
+    <div><a href="{% url 'fyb_web:login' %}">Login</a></div>
+    {% endif %}
+  </body>
+</html>

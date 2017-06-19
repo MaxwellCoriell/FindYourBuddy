@@ -1,0 +1,33 @@
+{% block content %}  
+<div class="container nav-container">
+  <div class="header clearfix">
+    <nav>      
+      <ul class="nav nav-pills pull-right">        
+        <li role="presentation" 
+        {% if request.path == '/home' %}
+          class="nav-location active"
+        {% else %}
+          class="nav-location"
+        {% endif %}><a href="{% url 'fyb_web:home' %}">Home</a></li>
+        <li role="presentation" 
+        {% if request.path == '/create' %}
+          class="nav-location active"
+        {% else %}
+          class="nav-location"
+        {% endif %}><a href="{% url 'fyb_web:lost_pet_post' %}">Lost Pet</a></li>
+        <li role="presentation" 
+        {% if request.path == '/create' %}
+          class="nav-location active"
+        {% else %}
+          class="nav-location"
+        {% endif %}><a href="{% url 'fyb_web:found_pet_post' %}">Lost Pet</a></li>
+        <li role="presentation" class="nav-location"><a href="{% url 'fyb_web:register' %}">Register</a></li>
+        <li role="presentation" class="nav-location"><a href="{% url 'fyb_web:logout_user' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted nav-title">Find Your Buddy</h3>
+  </div>
+</div>
+
+
+{% endblock %}

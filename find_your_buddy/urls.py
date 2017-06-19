@@ -17,7 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^fyb_web/', include('fyb_web.urls')),
-    url(r'^fyb_API/', include('fyb_API.urls')),
+    url(r'^', include('fyb_web.urls')),
     url(r'^admin/', admin.site.urls),
 ]

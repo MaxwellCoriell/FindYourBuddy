@@ -44,12 +44,12 @@ This will be hosted, but if you want to have it local, (to play around with or w
 
 ```
 git clone https://github.com/maxwellcoriell/BackendCapstone.git
-cd BackEndCapstone
+cd BackEndCapstone/find_your_buddy
 ```
 Setting up the database:
 
 ```
-python migrate_backend.sh
+python migrate_FYB.sh
 ```
 Run project in browser:
 
@@ -76,6 +76,14 @@ python manage.py runserver
 Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
 ## Credits
+Project Managers:
+  * [Steve Brownlee](https://github.com/stevebrownlee)- BackEnd Instructor
+  * [Brenda Long](https://github.com/brendalong)- FrontEnd Instructor
+  * [Meg Ducharme](https://github.com/megducharme)- Teacher's Assitant
+  * [Gilbert Diaz](https://github.com/gilbertdiaz)- Teacher's Assistant
+
+Thank you all for your invaluable knowledge, your patience, and your care for your students. Without the four of you, I know that I, and my classmates at NSS, wouldn't be anywhere close to the developers we are now.
+
 
 Build Contributors:
   * [Max Baldridge](https://github.com/MaxwellCoriell)

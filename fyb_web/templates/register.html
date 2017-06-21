@@ -13,7 +13,7 @@
         {% else %}
         <strong>Register here!</strong><br />
 
-        <form id="user_form" method="post" action="{% url 'website:register' %}"
+        <form id="user_form" method="post" action="{% url 'fyb_web:register' %}"
                 enctype="multipart/form-data">
 
             {% csrf_token %}
